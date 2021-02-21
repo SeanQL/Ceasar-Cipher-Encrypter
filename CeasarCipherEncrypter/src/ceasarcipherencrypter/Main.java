@@ -29,6 +29,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage)  {
         
+        //adding button that will open a dirctory to select an new Key file
         TextField tf = new TextField("Enter new Key File here...");        
         Button nkButton = new Button("Browse...");
         
@@ -36,6 +37,7 @@ public class Main extends Application {
         
         hBox1.setAlignment(Pos.TOP_CENTER);
         
+        // buttons to give the uer options to encrypt/decrypt or display data of text files
         Button efButton = new Button("Encrypt File");
         Button dfButton = new Button("Display freequencies of characters");
         Button afButton = new Button("Analyze frequencies");
