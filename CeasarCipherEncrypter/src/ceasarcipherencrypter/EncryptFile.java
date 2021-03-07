@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -23,23 +24,19 @@ public class EncryptFile {
         String cipherTxt = key.get(1);
         
         //for each string in the original text file
-        for (String decodedStr : originalList) {
-            decodedStr = decodedStr.replaceAll("[^a-zA-Z]", " ");
-            decodedStr = decodedStr.replaceAll("\\d", "");
+        for (String str : originalList) {
             String encodedStr = "";
             //for each character in the string
-            for(int i = 0; i < decodedStr.length(); i++) {
-                char c = decodedStr.toLowerCase().charAt(i);
+            for(int i = 0; i < str.length(); i++) {
+                char c = str.toLowerCase().charAt(i);
                 
-                
-                
-                if (!Character.isDigit(c)){
-                //finds the index of the character in the plain text list
+                //if character is alphabetic, if not adds the character to the end of the string
+                if(Character.isAlphabetic(c)) {
+                    //finds the index of the character in the plain text list
                     int index = plainTxt.indexOf(c);
-                    
 
                     // converts character to the one found at the index of the cipher
-                    System.out.println("i: " + i + "\tdecodedStr: " + decodedStr + "\tindex: " + index + "\tc: " + c);
+                    System.out.println("i: " + i + "\tdecodedStr: " + str + "\tindex: " + index + "\tc: " + c);
                     c = cipherTxt.charAt(index);
                     
                 }
