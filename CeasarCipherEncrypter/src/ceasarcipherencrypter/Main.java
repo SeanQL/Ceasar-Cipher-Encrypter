@@ -10,6 +10,7 @@ package ceasarcipherencrypter;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -33,6 +34,7 @@ public class Main  extends Application {
         launch(args);
     }
     
+        
         JList list = new JList();
         JScrollPane scrollPane = new JScrollPane();
         
@@ -64,6 +66,8 @@ public class Main  extends Application {
         JPanel p1 = new JPanel();
         JPanel p2 = new JPanel();
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, label, p2);
+        JList list = new JList();
+        JScrollPane scrollPane = new JScrollPane();
         
         //layout of panels
         p1.add(nkTF);
@@ -76,7 +80,6 @@ public class Main  extends Application {
         p2.add(afButton);
         p2.add(bwButton);
         
-        list = new JList();
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setLayoutOrientation(JList.VERTICAL);
         list.setVisibleRowCount(-1);
@@ -106,7 +109,7 @@ public class Main  extends Application {
         // reads the file and splits it into separate strings
         rfButton.addActionListener((ActionEvent e)  -> {
             ReadFile rf = new ReadFile();
-            String[] str = null;
+            List<String> str = null;
             DefaultListModel model = new DefaultListModel();
             
             try {
@@ -115,11 +118,32 @@ public class Main  extends Application {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
             list.setModel(model);
-            for(int i = 0; i < str.length; i++) {
-                model.addElement(str[i]);
+            for (String str1 : str) {
+                model.addElement(str1);
             }
         });
         
+        //encrypts file with key
+        efButton.addActionListener((ActionEvent e)  -> {
+            ReadFile rf = new ReadFile();
+            EncryptFile ef = new EncryptFile();
+            List<String> key = null;
+            List<String> file = null;
+            DefaultListModel model = new DefaultListModel();
+            
+            try {
+                key = rf.readFile(nkTF.getText());
+                file = rf.readFile(fileTF.getText());
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            List<String> encodedFile = ef.encrypt(key, file);
+            
+            list.setModel(model);
+            for (String str : encodedFile) {
+                model.addElement(str);
+            }
+        });
         
         //frame layout
         frame.getContentPane().add(BorderLayout.PAGE_START, p1);
