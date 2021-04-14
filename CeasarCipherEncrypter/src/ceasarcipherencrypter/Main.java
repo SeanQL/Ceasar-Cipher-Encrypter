@@ -148,7 +148,7 @@ public class Main  extends Application {
             }
         });
         
-        efButton.addActionListener((ActionEvent e)  -> {
+        saButton.addActionListener((ActionEvent e)  -> {
             JFileChooser chooser = new JFileChooser();
             chooser.setCurrentDirectory(new java.io.File("."));
             chooser.setDialogTitle("Save to File");
