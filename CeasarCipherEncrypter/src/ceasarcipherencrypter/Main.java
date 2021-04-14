@@ -51,13 +51,15 @@ public class Main  extends Application {
         //Text fields for the file paths
         JTextField nkTF = new JTextField("Enter new Key File here... \t\t");
         JTextField fileTF = new JTextField("Enter file to encrypt here...\t\t");
+        JTextField saveTF = new JTextField("Enter file save here...");
         
         //JButtons for the user to encrypt/decrypt file or give data collected from the file
         JButton rfButton = new JButton("Read File");
         JButton efButton = new JButton("Encrypt File");
-        JButton dfButton = new JButton("Display freequencies of characters");
-        JButton afButton = new JButton("Analyze frequencies");
-        JButton bwButton = new JButton("Break words");
+        JButton saButton = new JButton("Save");
+//        JButton dfButton = new JButton("Display freequencies of characters");
+//        JButton afButton = new JButton("Analyze frequencies");
+//        JButton bwButton = new JButton("Break words");
         
         //Label for the frequency analysis of the text file
         JLabel label = new JLabel("key analysis", SwingConstants.CENTER);
@@ -76,9 +78,10 @@ public class Main  extends Application {
         p1.add(fileButton);
         p2.add(rfButton);
         p2.add(efButton);
-        p2.add(dfButton);
-        p2.add(afButton);
-        p2.add(bwButton);
+        p2.add(saButton);
+//        p2.add(dfButton);
+//        p2.add(afButton);
+//        p2.add(bwButton);
         
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setLayoutOrientation(JList.VERTICAL);
@@ -145,6 +148,13 @@ public class Main  extends Application {
             }
         });
         
+        efButton.addActionListener((ActionEvent e)  -> {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setCurrentDirectory(new java.io.File("."));
+            chooser.setDialogTitle("Save to File");
+        
+        });
+        
         //frame layout
         frame.getContentPane().add(BorderLayout.PAGE_START, p1);
         frame.getContentPane().add(BorderLayout.CENTER, scrollPane);
@@ -152,4 +162,6 @@ public class Main  extends Application {
         
         frame.setVisible(true);
     }
+    
+    public 
 }
